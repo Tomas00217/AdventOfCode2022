@@ -1,7 +1,7 @@
 import Data.List
 
 getElfCalories :: [String] -> [Integer]
-getElfCalories allCalories = (map (\x -> sum (map read x)) (splitList (\x -> x /= "") allCalories))
+getElfCalories allCalories = map sum (map (map read) (splitList (/= "") allCalories))
 
 splitList :: (a -> Bool) -> [a] -> [[a]]
 splitList p [] = []
