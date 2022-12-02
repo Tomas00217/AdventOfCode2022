@@ -1,11 +1,11 @@
-calculateTotalScore :: FilePath -> (String -> String -> Integer) -> IO ()
-calculateTotalScore path f = do
+calculateTotalScore :: (String -> String -> Integer) -> FilePath -> IO ()
+calculateTotalScore f path = do
     contents <- readFile path
-    let totalScore = sum (map (\x -> calculateRound x f) (lines contents))
+    let totalScore = sum (map (calculateRound f) (lines contents))
     print totalScore
 
-calculateRound :: String -> (String -> String -> Integer) -> Integer
-calculateRound s f = let xs = words s
+calculateRound :: (String -> String -> Integer) -> String -> Integer
+calculateRound f s = let xs = words s
     in f (head xs) (last xs)
 
 getRoundScore :: String -> String -> Integer
@@ -37,7 +37,7 @@ getRoundScoreDecrypted "C" s
     | s == "Z" = 7
 
 printAnswer1 :: FilePath -> IO ()
-printAnswer1 path = calculateTotalScore path getRoundScore
+printAnswer1 = calculateTotalScore getRoundScore
 
 printAnswer2 :: FilePath -> IO ()
-printAnswer2 path = calculateTotalScore path getRoundScoreDecrypted
+printAnswer2 = calculateTotalScore getRoundScoreDecrypted
