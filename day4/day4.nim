@@ -1,9 +1,9 @@
 import std/strutils
 
-proc first(elf1Min: int, elf1Max: int, elf2Min: int, elf2Max:int, c: int): int = 
+proc first(elf1Min: int, elf1Max: int, elf2Min: int, elf2Max: int, c: int): int = 
     return (if (elf1Min <= elf2Min and elf1Max >= elf2Max) or (elf1Min >= elf2Min and elf1Max <= elf2Max): c + 1 else: c)
 
-proc second(elf1Min: int, elf1Max: int, elf2Min: int, elf2Max:int, c: int): int = 
+proc second(elf1Min: int, elf1Max: int, elf2Min: int, elf2Max: int, c: int): int = 
     return (if (elf1Max < elf2Min) or (elf2Max < elf1Min): c else: c + 1)
 
 proc solution() =
